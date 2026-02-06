@@ -4,6 +4,8 @@ import { languages } from "./languages"
 export default function Hangman() {
         const [currentWord, setCurrentWord] = useState("react")
 
+        const alphabet = "qwertyuiopasdfghjklzxcvbnm"
+
         const languageElements = languages.map(lang => {
                 const styles = {
                         backgroundColor: lang.backgroundColor,
@@ -22,6 +24,10 @@ export default function Hangman() {
                 <span key={index}>{letter.toUpperCase()}</span>
         ))
 
+        const keyboardElements = alphabet.split("").map(letter => (
+                <button key={letter}>{letter.toUpperCase()}</button>
+        ))
+
         return (
                 <main>
                         <header>
@@ -38,6 +44,11 @@ export default function Hangman() {
                         <section className="word">
                                 {letterElements}
                         </section>
+                        <section className="keyboard">
+                                {keyboardElements}
+                                <button id="newGame-button">New Game</button>
+                        </section>
+                        
                 </main>
         )
 }
