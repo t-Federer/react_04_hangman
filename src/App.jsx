@@ -1,10 +1,19 @@
 import { useState } from "react"
 import { languages } from "./languages"
+import { clsx } from "clsx"
 
 export default function Hangman() {
         const [currentWord, setCurrentWord] = useState("react")
+        const [guessedLetters, setGuessedLetters] = useState([])
 
         const alphabet = "qwertyuiopasdfghjklzxcvbnm"
+
+        function addGuessedLetter(letter) {
+                setGuessedLetters(prevLetters => {
+                        return prevLetters.includes(letter) ?
+                        prevLetters : [...prevLetters, letter]
+                })
+        }
 
         const languageElements = languages.map(lang => {
                 const styles = {
@@ -15,7 +24,7 @@ export default function Hangman() {
                         <span 
                                 className="chip" 
                                 style={styles}
-                                ke7={lang.name}
+                                key={lang.name}
                         >{lang.name}</span>
                 )
         })
@@ -24,9 +33,22 @@ export default function Hangman() {
                 <span key={index}>{letter.toUpperCase()}</span>
         ))
 
-        const keyboardElements = alphabet.split("").map(letter => (
-                <button key={letter}>{letter.toUpperCase()}</button>
-        ))
+        const keyboardElements = alphabet.split("").map(letter => {
+                const isGuessed = guessedLetters.includes(letter)
+                const isCorrect = isGuessed && currentWord.includes(letter)
+                const isWrong = isGuessed && !currentWord.includes(letter)
+                const className = clsx({
+                        correct: isCorrect,
+                        wrong: isWrong
+                })
+                return (
+                        <button 
+                                className={className}
+                                key={letter} 
+                                onClick={() => addGuessedLetter(letter)}
+                        >{letter.toUpperCase()}</button>
+                )
+        })
 
         return (
                 <main>
