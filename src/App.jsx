@@ -1,11 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 
-export default function App() {
+export default function Hangman() {
         return (
                 <main>
-                        Game goes here
+                        <header>
+                                <h1>Hangman</h1>
+                                <p>Guess the word within 8 attempts to keep the programming languages alive!</p>
+                        </header>
+                        <section className='game-status'>
+                                <h2>You win!</h2>
+                                <p>Well played! 🥳</p>
+                        </section>
                 </main>
         )
 }
