@@ -2,6 +2,7 @@ import { useState } from "react"
 import { languages } from "./languages"
 
 export default function Hangman() {
+        const [currentWord, setCurrentWord] = useState("react")
 
         const languageElements = languages.map(lang => {
                 const styles = {
@@ -17,6 +18,10 @@ export default function Hangman() {
                 )
         })
 
+        const letterElements = currentWord.split("").map((letter, index) => (
+                <span key={index}>{letter.toUpperCase()}</span>
+        ))
+
         return (
                 <main>
                         <header>
@@ -29,6 +34,9 @@ export default function Hangman() {
                         </section>
                         <section className='language-chips'>
                                 {languageElements}
+                        </section>
+                        <section className="word">
+                                {letterElements}
                         </section>
                 </main>
         )
