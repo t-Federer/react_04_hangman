@@ -3,9 +3,19 @@ import { languages } from "./languages"
 import { clsx } from "clsx"
 
 export default function Hangman() {
+        // State values
         const [currentWord, setCurrentWord] = useState("react")
         const [guessedLetters, setGuessedLetters] = useState([])
+        
+        // Derived values
+        const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
+        const isGameWon = 
+                currentWord.split("").every(letter => guessedLetters.includes(letter))
+        console.log(isGameWon)
+        const isGameLost = wrongGuessCount >= languages.length - 1
+        const isGameOver = isGameWon || isGameLost
 
+        // Static values
         const alphabet = "qwertyuiopasdfghjklzxcvbnm"
 
         function addGuessedLetter(letter) {
@@ -15,14 +25,16 @@ export default function Hangman() {
                 })
         }
 
-        const languageElements = languages.map(lang => {
+        const languageElements = languages.map((lang, index) => {
+                const isLanguageLost = index < wrongGuessCount
                 const styles = {
                         backgroundColor: lang.backgroundColor,
                         color: lang.color
                 }
+                const className = clsx("chip", isLanguageLost && "lost")
                 return (
                         <span 
-                                className="chip" 
+                                className={className} 
                                 style={styles}
                                 key={lang.name}
                         >{lang.name}</span>
@@ -30,7 +42,9 @@ export default function Hangman() {
         })
 
         const letterElements = currentWord.split("").map((letter, index) => (
-                <span key={index}>{letter.toUpperCase()}</span>
+                <span key={index}>
+                        {guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
+                </span>
         ))
 
         const keyboardElements = alphabet.split("").map(letter => {
@@ -68,9 +82,8 @@ export default function Hangman() {
                         </section>
                         <section className="keyboard">
                                 {keyboardElements}
-                                <button id="newGame-button">New Game</button>
                         </section>
-                        
+                        {isGameOver && <button className="newGame-button">New Game</button>}
                 </main>
         )
 }

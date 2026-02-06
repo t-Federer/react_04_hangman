@@ -59,12 +59,13 @@ section.language-chips {
         max-width: 320px;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 36px;
+        margin-bottom: 20px;
 }
 
 span.chip {
         border-radius: 3px;
         padding: 4.5px;
+        position: relative;
 }
 
 section.word {
@@ -110,14 +111,31 @@ section.keyboard > button.wrong {
         background-color: #EC5D49;
 }
 
-#newGame-button {
+.newGame-button {
         background-color: rgb(82, 194, 255);
         border: 1px solid #D7D7D7;
         border-radius: 3px;
-        margin-top: 0;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 120px;
+        padding: 6px 46px;
+}
+
+/* Dimmed overlay skull on lost languages */
+span.chip.lost::before {
+        content: "💀";
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        font-size: 0.85rem;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.7);
 }
