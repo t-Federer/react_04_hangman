@@ -30,6 +30,11 @@ export default function Hangman() {
                 })
         }
 
+        function startNewGame() {
+                setCurrentWord(getRandomWord())
+                setGuessedLetters([])
+        }
+
         const languageElements = languages.map((lang, index) => {
                 const isLanguageLost = index < wrongGuessCount
                 const styles = {
@@ -146,7 +151,12 @@ export default function Hangman() {
                         <section className="keyboard">
                                 {keyboardElements}
                         </section>
-                        {isGameOver && <button className="newGame-button">New Game</button>}
+                        {isGameOver && 
+                                <button 
+                                        className="newGame-button" 
+                                        onClick={startNewGame}
+                                >New Game</button>
+                        }
                 </main>
         )
 }
