@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { languages } from "./languages"
 import { clsx } from "clsx"
+import { getFarwellText } from "./utils"
 
 export default function Hangman() {
         // State values
@@ -14,6 +15,8 @@ export default function Hangman() {
         console.log(isGameWon)
         const isGameLost = wrongGuessCount >= languages.length - 1
         const isGameOver = isGameWon || isGameLost
+        const lastGuessedLetter = guessedLetters[guessedLetters.length - 1]
+        const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
         // Static values
         const alphabet = "qwertyuiopasdfghjklzxcvbnm"
@@ -66,12 +69,17 @@ export default function Hangman() {
 
         const gameStatusClass = clsx("game-status",  {
                 won: isGameWon,
-                lost: isGameLost
+                lost: isGameLost,
+                farewell: !isGameOver && isLastGuessIncorrect 
         })
 
         function renderGameStatus() {
-                if (!isGameOver) {
-                        return null
+                if (!isGameOver && isLastGuessIncorrect) {
+                        return (
+                                <p 
+                                        className="farewell-message"
+                                >{getFarwellText(languages[wrongGuessCount - 1].name)}</p>
+                        )
                 }
                 if (isGameWon) {
                         return (
@@ -80,7 +88,8 @@ export default function Hangman() {
                                         <p>Well played! 🥳</p>
                                 </>
                         )
-                } else {
+                } 
+                if (isGameLost) {
                         return (
                                 <>
                                         <h2>You Lose!</h2>
