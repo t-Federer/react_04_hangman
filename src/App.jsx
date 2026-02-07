@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { languages } from "./languages"
 import { clsx } from "clsx"
-import { getFarwellText } from "./utils"
+import { getFarwellText, getRandomWord } from "./utils"
 
 export default function Hangman() {
         // State values
-        const [currentWord, setCurrentWord] = useState("react")
+        // lazy state inizialization (possibile con wrapping di getRandomWord nella arrow function)
+        const [currentWord, setCurrentWord] = useState(() => getRandomWord())
         const [guessedLetters, setGuessedLetters] = useState([])
         
         // Derived values
