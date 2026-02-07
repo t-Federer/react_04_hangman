@@ -9,11 +9,12 @@ export default function Hangman() {
         const [guessedLetters, setGuessedLetters] = useState([])
         
         // Derived values
+        const numGuessesLeft = languages.length - 1
         const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
         const isGameWon = 
                 currentWord.split("").every(letter => guessedLetters.includes(letter))
         console.log(isGameWon)
-        const isGameLost = wrongGuessCount >= languages.length - 1
+        const isGameLost = wrongGuessCount >= numGuessesLeft
         const isGameOver = isGameWon || isGameLost
         const lastGuessedLetter = guessedLetters[guessedLetters.length - 1]
         const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
@@ -121,11 +122,20 @@ export default function Hangman() {
                         <section className="word">
                                 {letterElements}
                         </section>
+                        {/* Combined visually hidden aria-live region for status updats */}
                         <section 
+                                className="sr-only"
                                 aria-live="polite"
                                 role="status" 
-                                className="sr-only"
                         >       
+                                <p>
+                                        {
+                                                currentWord.includes(lastGuessedLetter) ? 
+                                                `Correct! The letter ${lastGuessedLetter} is in the word.` : 
+                                                `Sorry, the letter ${lastGuessedLetter} is not in the word.`
+                                        }
+                                        You have {numGuessesLeft} attempts left.
+                                </p>
                                 <p>Current word: {currentWord.split().map(letter => 
                                         guessedLetters.includes(letter) ? 
                                         letter + "." : "blank."
