@@ -2,6 +2,7 @@ import { useState } from "react"
 import { languages } from "./languages"
 import { clsx } from "clsx"
 import { getFarwellText, getRandomWord } from "./utils"
+import Confetti from "react-confetti"
 
 export default function Hangman() {
         // State values
@@ -116,7 +117,15 @@ export default function Hangman() {
         }
 
         return (
+                
                 <main>
+                        {
+                                isGameWon && 
+                                        <Confetti 
+                                                recycle={false}
+                                                numberOfPieces={500}
+                                        />
+                        }
                         <header>
                                 <h1>Hangman</h1>
                                 <p>Guess the word within 8 attempts to keep the programming languages alive!</p>
