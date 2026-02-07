@@ -62,6 +62,9 @@ export default function Hangman() {
                         <button 
                                 className={className}
                                 key={letter} 
+                                disabled={isGameOver}
+                                aria-disabled={guessedLetters.includes(letter)}
+                                aria-label={`Letter ${letter}`}
                                 onClick={() => addGuessedLetter(letter)}
                         >{letter.toUpperCase()}</button>
                 )
@@ -105,7 +108,11 @@ export default function Hangman() {
                                 <h1>Hangman</h1>
                                 <p>Guess the word within 8 attempts to keep the programming languages alive!</p>
                         </header>
-                        <section className={gameStatusClass}>
+                        <section 
+                                aria-live="polite" 
+                                role="status" 
+                                className={gameStatusClass}
+                        >
                                 {renderGameStatus()}
                         </section>
                         <section className='language-chips'>
@@ -113,6 +120,17 @@ export default function Hangman() {
                         </section>
                         <section className="word">
                                 {letterElements}
+                        </section>
+                        <section 
+                                aria-live="polite"
+                                role="status" 
+                                className="sr-only"
+                        >       
+                                <p>Current word: {currentWord.split().map(letter => 
+                                        guessedLetters.includes(letter) ? 
+                                        letter + "." : "blank."
+                                        ).join(" ")}
+                                </p>
                         </section>
                         <section className="keyboard">
                                 {keyboardElements}
