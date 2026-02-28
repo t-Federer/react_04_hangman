@@ -47,7 +47,7 @@ section.game-status {
         width: 100%;
         max-width: 320px;
         border-radius: 4px;
-        margin-block: 20px; /*metto margin Top e Bottom*/
+        margin-block: 20px; /*margin Top and Bottom*/
         min-height: 80px;
         background-color: transparent;
 }
