@@ -6,7 +6,7 @@ import Confetti from "react-confetti"
 
 export default function Hangman() {
         // State values
-        // lazy state inizialization (possibile con wrapping di getRandomWord nella arrow function)
+        // lazy state initialization (possible by wrapping getRandomWord in an arrow function)
         const [currentWord, setCurrentWord] = useState(() => getRandomWord())
         const [guessedLetters, setGuessedLetters] = useState([])
         
@@ -143,7 +143,7 @@ export default function Hangman() {
                         <section className="word">
                                 {letterElements}
                         </section>
-                        {/* Combined visually hidden aria-live region for status updats */}
+                        {/* Combined visually hidden aria-live region for status updates */}
                         <section 
                                 className="sr-only"
                                 aria-live="polite"
