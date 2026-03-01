@@ -12,14 +12,15 @@
 
 This project is a small React take on the classic hangman game, built as an exercise in state management, conditional rendering, and basic accessibility. It offers a simple word‑guessing experience with clear visual feedback and a playful “lives” system based on programming languages.
 
-Players guess letters to reveal the hidden word, losing one language for each mistake. The game ends when the word is solved or all languages are gone, with confetti on victory and a light, humorous message on defeat.
+Players guess letters to reveal the hidden word, losing one language for each mistake.<br />
+The game ends when the word is solved or all languages are gone, with confetti on victory and a light, humorous message on defeat.
 
 The minigame includes:
-- State‑driven logic: React state tracks the current word, guessed letters, and game outcome;
-- Conditional tendering: dynamic UI for win/lose states, revealed letters, and language “chips” as lives;
-- Visual feedback: styling for correct and incorrect guesses, plus a confetti effect when the player wins;
-- Accessible status updates: aria-live regions announce guess results and remaining attempts for assistive technologies;
-- Replayability: a “New Game” button that resets the state and selects a new random word.
+- **State‑driven logic**: React state tracks the current word, guessed letters, and game outcome;
+- **Conditional tendering**: dynamic UI for win/lose states, revealed letters, and language “chips” as lives;
+- **Visual feedback**: styling for correct and incorrect guesses, plus a confetti effect when the player wins;
+- **Accessible status updates**: aria-live regions announce guess results and remaining attempts for assistive technologies;
+- **Replayability**: a “New Game” button that resets the state and selects a new random word.
 
 All code in this repository is written from scratch as a compact, self‑contained piece of frontend work showcased in my portfolio.
 
@@ -28,7 +29,8 @@ All code in this repository is written from scratch as a compact, self‑contain
 ## 🛠️ Tech Stack
 
 - [React](https://react.dev/), a component‑based JavaScript library for building dynamic, modular user interfaces; 
-- [Vite](https://vitejs.dev/), a fast, modern build tool that provides instant dev‑server startup, smooth HMR, and optimized production builds.
+- [Vite](https://vitejs.dev/), a fast, modern build tool that provides instant dev‑server startup, smooth HMR, and optimized production builds;
+- **CSS**, used for styling, layout, and visual feedback throughout the minigame.
 
 ---
 
