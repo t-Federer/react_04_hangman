@@ -4,7 +4,9 @@
 
 ---
 
-↗️ **Demo:** [hangman](https://t-federer.github.io/react_04_hangman/) 
+<div align="center">
+  ↗️ <a href="https://t-federer.github.io/react_04_hangman/"><strong>Demo</strong></a>
+</div>
 
 ---
 
